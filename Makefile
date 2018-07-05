@@ -1,9 +1,27 @@
-modern: *.cpp *.hpp
-	g++ *.cpp std=c++14 -o modern -Wall -Wextra -Werror -Wpedantic -g
+CXX= g++
+CXXFLAGS=  -Wall -Wextra -Werror -Wpedantic
+STD= -std=c++14
+SOURCES= *.cpp
+OBJECTS= $(SOURCES: .cpp=.o)
 
-modernRelaese: *.cpp *.hpp
-	g++ *.cpp std=c++14 -o $@ -Wall -Wextra -Werror -Wpedantic -O3
+all= modern
 
-modern: *.cpp *.hpp
+%.o: %.cpp %.hpp
+	$(CXX) %.cpp $(STD) -o $@ $(CXXFLAGS) -g
+
+modern: $(OBJECTS)
+	$(CXX)  $(OBJECTS) -o $@
+
+
+#%.o: %.cpp %.hpp
+#	$(CXX) %.cpp $(STD) -o $@ $(CXXFLAGS) -g
+
+#main.o: main.cpp *.hpp
+#	$(CXX) main.cpp $(STD) -o $@ $(CXXFLAGS) -g
+
+#modern: $(OBJECTS)
+#	$(CXX) $(OBJECTS) -o $@
+
+
 clean:
 	rm modern
