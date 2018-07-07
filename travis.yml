@@ -1,0 +1,7 @@
+language: cpp
+cpp:
+    - 5.4
+compiler:
+    - gcc
+script:
+    - make
